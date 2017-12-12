@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+	XML의 태그, 속성을 지정하는 언어
+	<!ELEMENT>
+		<member>
+			<list no="a1">
+				<id>admin</id>
+				<pwd>1234</pwd>
+				<name first="롱">홍길동</name>
+				<hp>000-0000-0000</hp>
+				<from/>
+			</list>
+			<list no="a2">
+				<id>admin</id>
+				<pwd>1234</pwd>
+				<name>홍길동</name>
+				<home>000-0000-0000</home>
+				<fromr/>
+			</list>
+		</member>
+	<!ATTLIST>
+	<!ENTITY nbsp " "> => &nbsp;
+	<!ENTITY a "aa"> &a
+	
+	+ : 1~
+	* : 0~
+	? 써도되고 안써도됨 (0|1)
+	| 선택: (th|td)*(+)
+	default 반드시 한번만 사용
+	 
+-->
+<!ELEMENT member (list+)>
+<!ELEMENT list (id,pwd?,name,(hp|home),from)>
+<!ATTLIST list no ID #REQUIRED>
+<!--(
+	ID, IDREF(FOREIGN KEY), NOTATION(일반문자열) : 공백을 허용하지 앟는다
+							, CDATA(일반문자열) : 공백을 허용
+							
+	==
+	UNIQUE 
+	#REQUIRED : NOT NULL
+	#IMPLTED : NULL
+	#FIXED : DEFAULT
+	
+-->
+<!ELEMENT id (#PCDATA)>
+<!ELEMENT pwd (#PCDATA)>
+<!ELEMENT name (#PCDATA)>
+<!ATTLIST name first CDATA #IMPLIED>
+<!ELEMENT hp (#PCDATA)>
+<!ELEMENT home (#PCDATA)>
+<!ELEMENT from EMPTY>
+<!ATTLIST from nara CDATA #FIXED "한국">
